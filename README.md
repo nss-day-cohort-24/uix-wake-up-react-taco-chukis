@@ -15,6 +15,7 @@ Your group will create a Single Page Application that is essentially a dashboard
 # Stretch Goals
 1. Allow the user to press and hold an API section and move it anywhere on the screen to better fit their lifestyle. 
 1. Future planning for other APIs to be included.
+1. Add in the Spotify API to allow the user to play a song from their current / favorite playlist.
 
 
 ## Getting Started
