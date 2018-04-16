@@ -1,28 +1,31 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway|Source+Sans+Pro');
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+
+h1 {
+  font-family: 'Source Sans Pro', sans-serif;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+h3 {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-.App-intro {
-  font-size: large;
+p {
+  font-family: 'Raleway', sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+
+.gradient {
+  height: 100vw;
+  background: #180A30; /* For browsers that do not support gradients */
+  background: linear-gradient(to bottom right, #756B77, #180A30); /* Standard syntax (must be last) */
+}
+
+.card-tile {
+  border-radius: 25;
+  border: none;
+  background-color: whitesmoke;
+  opacity: 0.6;
 }
