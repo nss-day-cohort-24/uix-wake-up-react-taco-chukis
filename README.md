@@ -1,4 +1,7 @@
-# Wake Up App - Group Project
+# Fanatic 
+<img src="images/logo-placeholder.png" alt="logo placeholder" title="logo placeholder" width="25%">
+Fanatic is a Wake Up App created by the Developers and UX Designers at Cock-A-Doodle-Doo. 
+
 
 ## Summary
 
@@ -17,26 +20,25 @@ Your group will create a Single Page Application that is essentially a dashboard
 1. Future planning for other APIs to be included.
 1. Add in the Spotify API to allow the user to play a song from their current / favorite playlist.
 
+# React JS File Components
 
-## Getting Started
+## News (mvp)
+1. 
+1. 
+1.
 
-> **Pro Tip:** If you find yourself writing logic on the first day of the sprint, then you did not spend enough time planning, and gaining clarification on the acceptance criteria.
+## Weather (mvp)
+1. 
+1. 
+1. 
 
-1. Be sure to review your design requirements [here](https://sites.google.com/susanculkin.com/fewdd-b/home/week-14). 
-1. Review the [product owner's tickets](https://github.com/nashville-software-school/group-project-uix-cock-a-doodle-doo/issues).
-1. Create Firebase account for your team to use in this application.
-1. Be sure to set your Firebase rules for indexing.
-1. Make sure you spend time defining MVP and creating a plan to reach that goal.
+## Sports (mvp)
+1. 
+1. 
+1. 
 
-## Technical Considerations
-* You will be getting data from different APIs.
-* User authentication using Firebase.
-* The application must have CRUD functionality with the Firebase database.
-* You will use components to modualize your code.
-* Use a style framework.
+## Music (stretch goal)
+1. 
+1. 
+1. 
 
-## Technology Requirements
-* React 
-* CSS framework of your choice
-* Firebase for data storage and retrieval\
-* You may use `create-react-app`, `re-base`, `react-router`.
