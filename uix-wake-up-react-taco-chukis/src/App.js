@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import holderImg from './img/museum.jpg';
 import './App.css';
+import Nav from './Nav.js';
 
 class App extends Component {
   render() {
     return (
       <div className="">
         <header>
+          <Nav />
         </header>
         
         <div className="d-flex flex-row justify-content-around">

@@ -29,3 +29,11 @@ p {
   background-color: whitesmoke;
   opacity: 0.6;
 }
+
+.darkgray {
+  background-color: #3E3E3E;
+}
+
+.whiteTxt {
+  color: white;
+}
