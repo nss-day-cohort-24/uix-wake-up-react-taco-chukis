@@ -64,15 +64,16 @@ class News extends Component {
             } else if(!newsLoaded) {
                 return <div>Loading...</div>
             } else{
-                let newsArticle = objResult.map((link) => (
+                let newsArticle = objResult.map((link, index) => (
                 // {console.log("link", link.title, "description: ", link.description)}
-                    <div>
+                    <div key={index}>
                       <Card className="card-tile card my-3 mx-2">
                         <img className="card-img-top" src={link.urlToImage} alt="Card image cap" />
                           <div className="card-tile card-body">
                             <p className="card-tile card-text">
-                            {link.title}
-                            {link.description}
+                            {link.title}<br />
+                            {link.description}<br />
+                            source: {link.source.name}
                             </p>
                         
                           </div>
