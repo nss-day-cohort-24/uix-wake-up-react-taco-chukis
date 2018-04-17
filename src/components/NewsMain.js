@@ -27,7 +27,7 @@ class NewsList extends React.Component{
             // example:
 
           <li key={index} className="list-group-item" style={styles.listGroup}>
-
+          <News />
           </li>
         )
       });

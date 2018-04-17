@@ -5,6 +5,7 @@ import Nav from './Nav.js';
 import Weather from './components/Weather.js';
 import './App.css';
 import News from './components/News';
+import HockeyMain from './components/HockeyMain';
 
 class App extends Component {
   render() {
@@ -18,27 +19,40 @@ class App extends Component {
         {/* weather hockey */}
             <Weather />
         {/* hockey */}
-          <div className="card-tile my-3 mx-2 p-3 col-md-6">
-            <p className="">Hockey Stats</p>          
+          <div className="card-tile my-3 mx-2 p-3 col-md-6">    
+            <HockeyMain />    
           </div>
         {/* end hockey */}
         </div>
         {/* end weather/hockey */}
-        {/* news */}
-        <div>
-        {/* news card */}
-          <div className="card-tile card my-3 mx-2">
-            <img className="card-tile-img card-img-top" src={holderImg} alt="Card image cap" />
-              <div className="card-tile-news card-body">
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-          </div>
-        {/* end news card  */}
-        </div>
-      {/* end news */}
+        <News />
       </div>
     );
   }
 }
+
+
+// componentDidMount() {
+//   this.authListener = rebase.initializedApp.auth().onAuthStateChanged((user) =>{
+//       if (user) {
+//           this.setState({
+//               authed: true,
+//               loading: false,
+//               uid: user.uid
+//           });
+      
+//       } else{
+//           this.setState({
+//               authed: false,
+//               loading: false,
+//               uid: null,
+//           })
+//       }
+//   })
+// }
+
+// componentWillUnmount() {
+//   console.log("componentWillUnmount function");
+// }
 
 export default App;
