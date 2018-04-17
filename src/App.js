@@ -35,4 +35,28 @@ class App extends Component {
   }
 }
 
+
+// componentDidMount() {
+//   this.authListener = rebase.initializedApp.auth().onAuthStateChanged((user) =>{
+//       if (user) {
+//           this.setState({
+//               authed: true,
+//               loading: false,
+//               uid: user.uid
+//           });
+      
+//       } else{
+//           this.setState({
+//               authed: false,
+//               loading: false,
+//               uid: null,
+//           })
+//       }
+//   })
+// }
+
+// componentWillUnmount() {
+//   console.log("componentWillUnmount function");
+// }
+
 export default App;
