@@ -1,5 +1,5 @@
 # Fanatic 
-<img src="./images/logo-placeholder.png" alt="logo placeholder" title="logo placeholder" width="25%">
+![logo placeholder](relative/path/to/images/logo-placeholder.png "Logoplaceholder")
 Fanatic is a Wake Up App created by the Developers and UX Designers at Cock-A-Doodle-Doo. 
 
 
