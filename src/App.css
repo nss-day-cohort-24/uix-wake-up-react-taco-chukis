@@ -5,6 +5,7 @@
 h1 {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
+  font-weight: lighter;
 }
 
 h3 {
@@ -15,19 +16,21 @@ p {
   font-family: 'Raleway', sans-serif;
 }
 
-
+.teal {
+  color: #15E6D6;
+}
 
 .gradient {
   height: 100vw;
   background: rgb(10, 22, 48); /* For browsers that do not support gradients */
-  background: linear-gradient(to bottom right, rgb(128, 231, 238), rgb(10, 22, 48)); /* Standard syntax (must be last) */
+  background: linear-gradient(to bottom right, rgb(15, 165, 153), rgb(10, 22, 48)); /* Standard syntax (must be last) */
 }
 
 .card-tile {
-  border-radius: 25;
+  border-radius: 25px;
   border: none;
-  background-color: whitesmoke;
-  opacity: 0.6;
+  background-color: rgba(245, 245, 245, 0.6);
+  /* opacity: 0.6; */
 }
 
 .darkgray {
@@ -36,4 +39,8 @@ p {
 
 .whiteTxt {
   color: white;
+}
+
+.underline-border {
+  border-bottom: 1px solid #15E6D6;
 }
