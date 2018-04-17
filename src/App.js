@@ -30,22 +30,34 @@ class App extends Component {
         {/* end hockey */}
         </div>
         {/* end weather/hockey */}
-        {/* news */}
-        <div>
-        {/* news card */}
-          <div className="card-tile card my-3 mx-2">
-            <img className="card-img-top" src={holderImg} alt="Card image cap" />
-              <div className="card-tile card-body">
-                <p className="card-tile card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <News />
-              </div>
-          </div>
-        {/* end news card  */}
-        </div>
-      {/* end news */}
+        <News />
       </div>
     );
   }
 }
+
+
+// componentDidMount() {
+//   this.authListener = rebase.initializedApp.auth().onAuthStateChanged((user) =>{
+//       if (user) {
+//           this.setState({
+//               authed: true,
+//               loading: false,
+//               uid: user.uid
+//           });
+      
+//       } else{
+//           this.setState({
+//               authed: false,
+//               loading: false,
+//               uid: null,
+//           })
+//       }
+//   })
+// }
+
+// componentWillUnmount() {
+//   console.log("componentWillUnmount function");
+// }
 
 export default App;
