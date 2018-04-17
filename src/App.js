@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD:uix-wake-up-react-taco-chukis/src/App.js
 import holderImg from './img/museum.jpg';
 import './App.css';
 import Nav from './Nav.js';
+=======
+import './App.css';
+import News from './components/News';
+>>>>>>> 20efca9ab2e980c874c8a9713a86dbba186751e0:src/App.js
 
 class App extends Component {
   render() {
     return (
+<<<<<<< HEAD:uix-wake-up-react-taco-chukis/src/App.js
       <div className="">
         <header>
           <Nav />
@@ -39,6 +45,15 @@ class App extends Component {
         {/* end news card  */}
         </div>
       {/* end news */}
+=======
+      <div className="App">
+        <header className="App-header">
+
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+       
+        <News />
+>>>>>>> 20efca9ab2e980c874c8a9713a86dbba186751e0:src/App.js
       </div>
     );
   }
