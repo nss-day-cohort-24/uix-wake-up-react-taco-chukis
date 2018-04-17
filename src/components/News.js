@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 // import { Card, Button, CardTitle, CardText } from 'reactstrap';
 
 // API Call(fetch) for weather using zipcode
@@ -20,13 +21,14 @@ class News extends Component {
             showResult: false,
             error: null
         }
-        console.log("constructor: ", constructor);
 
         this.showClicked=this.showClicked.bind(this);
-
-        // componentDidMount() {
-        //     this.getNews();
     }
+
+        componentDidMount() {
+            this.getNews()
+        }
+        /* COMPONENTDIDMOUNT function is running the getNews() function to show the results of the news api*/
 
         showClicked() {
             this.setState({
@@ -43,8 +45,10 @@ class News extends Component {
                 (result) => {
                     this.setState({
                         newsLoaded: true,
-                        objResult: result
+                        objResult: result.articles
                     });
+                    
+                    console.log("result: ", result.articles);
                 },
                 (error) => {
                     this.setState({
@@ -69,7 +73,8 @@ class News extends Component {
                 return <div>Loading...</div>
             } else{
                 return (
-                    <div>News</div>
+                    <div>News:
+                    </div>
                 )
             }
         }
