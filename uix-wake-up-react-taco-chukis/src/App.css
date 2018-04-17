@@ -19,8 +19,8 @@ p {
 
 .gradient {
   height: 100vw;
-  background: #180A30; /* For browsers that do not support gradients */
-  background: linear-gradient(to bottom right, #756B77, #180A30); /* Standard syntax (must be last) */
+  background: rgb(10, 22, 48); /* For browsers that do not support gradients */
+  background: linear-gradient(to bottom right, rgb(128, 231, 238), rgb(10, 22, 48)); /* Standard syntax (must be last) */
 }
 
 .card-tile {
