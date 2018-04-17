@@ -7,7 +7,7 @@ function Nav(props) {
         <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
             <p className="whiteTxt">#</p>
             <p className="whiteTxt">fanatic</p>
-            <p className="whiteTxt">logout</p>            
+            <p className="whiteTxt">logout</p>
         </div>
     );
 }
