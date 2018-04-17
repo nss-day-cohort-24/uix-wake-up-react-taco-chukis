@@ -29,19 +29,7 @@ class App extends Component {
         {/* end hockey */}
         </div>
         {/* end weather/hockey */}
-        {/* news */}
-        <div>
-        {/* news card */}
-          <div className="card-tile card my-3 mx-2">
-            <img className="card-img-top" src={holderImg} alt="Card image cap" />
-              <div className="card-tile card-body">
-                <p className="card-tile card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <News />
-              </div>
-          </div>
-        {/* end news card  */}
-        </div>
-      {/* end news */}
+        <News />
       </div>
     );
   }
