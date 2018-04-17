@@ -1,11 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Raleway|Source+Sans+Pro:200,400');
 
-
+html{
+  min-height: 100%;
+  position:relative;
+}
+body {
+  height: 100%;
+  width: 100%;
+}
 
 h1 {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
-  font-weight: lighter;
+  font-weight: 200;
 }
 
 h3 {
@@ -23,18 +30,27 @@ p {
 .gradient {
   height: 100vw;
   background: rgb(10, 22, 48); /* For browsers that do not support gradients */
-  background: linear-gradient(to bottom right, rgb(15, 165, 153), rgb(10, 22, 48)); /* Standard syntax (must be last) */
+  background: linear-gradient(to bottom right, rgb(12, 129, 120), rgb(10, 22, 48)); /* Standard syntax (must be last) */
 }
 
 .card-tile {
   border-radius: 25px;
   border: none;
   background-color: rgba(245, 245, 245, 0.6);
-  /* opacity: 0.6; */
+}
+
+.card-tile-news {
+  border-radius: 0 0 25px 25px;
+  border: none;
+  background-color: rgba(245, 245, 245, 0.6);
+}
+
+.card-tile-img {
+  border-radius: 25px 25px 0 0;
 }
 
 .darkgray {
-  background-color: #3E3E3E;
+  background-color: rgba(62, 62, 62, 0.7);
 }
 
 .whiteTxt {
@@ -43,4 +59,15 @@ p {
 
 .underline-border {
   border-bottom: 1px solid #15E6D6;
+}
+
+.pillbutton {
+  background: white;
+  border: 1px solid rgb(10, 22, 48);
+  border-radius: 25px;
+}
+
+.pillbutton > p {
+  margin: auto;
+  padding: auto;
 }

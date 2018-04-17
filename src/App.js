@@ -16,11 +16,7 @@ class App extends Component {
         
         <div className="d-flex flex-row justify-content-around">
         {/* weather hockey */}
-
-        {/* weather */}
             <Weather />
-        {/* end hockey */}
-          
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">
             <p className="">Hockey Stats</p>          
@@ -32,9 +28,9 @@ class App extends Component {
         <div>
         {/* news card */}
           <div className="card-tile card my-3 mx-2">
-            <img className="card-img-top" src={holderImg} alt="Card image cap" />
-              <div className="card-tile card-body">
-                <p className="card-tile card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <img className="card-tile-img card-img-top" src={holderImg} alt="Card image cap" />
+              <div className="card-tile-news card-body">
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
           </div>
         {/* end news card  */}
