@@ -68,9 +68,9 @@ class News extends Component {
                 // {console.log("link", link.title, "description: ", link.description)}
                     <div>
                       <Card className="card-tile card my-3 mx-2">
-                        <img className="card-img-top" src={link.urlToImage} alt="Card image cap" />
-                          <div className="card-tile card-body">
-                            <p className="card-tile card-text">
+                            <img className="card-tile-img card-img-top" src={link.urlToImage} alt="Card image cap" />
+                          <div className="card-tile-news card-body">
+                            <p className="card-text">
                             {link.title}
                             {link.description}
                             </p>

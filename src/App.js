@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import holderImg from './img/museum.jpg';
 import './App.css';
 import Nav from './Nav.js';
+import Weather from './components/Weather.js';
 import './App.css';
 import News from './components/News';
 import HockeyMain from './components/HockeyMain';
@@ -16,13 +17,7 @@ class App extends Component {
         
         <div className="d-flex flex-row justify-content-around">
         {/* weather hockey */}
-
-        {/* weather */}
-          <div className="card-tile my-3 mx-2 p-3 col-md-6">
-            <p className="display-3">33</p>
-          </div>
-        {/* end hockey */}
-          
+            <Weather />
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
             <HockeyMain />    
