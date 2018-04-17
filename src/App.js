@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './Nav.js';
 import './App.css';
 import News from './components/News';
-import HockeyMain from './components/HockeyMain';
+import HockeyContent from './components/HockeyMain';
 
 class App extends Component {
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
           
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
-            <HockeyMain />    
+            <HockeyContent />    
           </div>
         {/* end hockey */}
         </div>
