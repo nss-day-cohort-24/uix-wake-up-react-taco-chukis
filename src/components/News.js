@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import holderImg from '../img/museum.jpg';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 
 
@@ -48,7 +47,8 @@ class News extends Component {
                 })
         }
         
-
+    /*render is grabbing the state object inside of the constructor and rendering the object result (objResult)
+    objResult is being set through the api fetch*/
         render() {
             const {error, newsLoaded, objResult} = this.state;
             
@@ -68,7 +68,7 @@ class News extends Component {
                 // {console.log("link", link.title, "description: ", link.description)}
                     <div>
                       <Card className="card-tile card my-3 mx-2">
-                        <img className="card-img-top" src={holderImg} alt="Card image cap" />
+                        <img className="card-img-top" src={link.urlToImage} alt="Card image cap" />
                           <div className="card-tile card-body">
                             <p className="card-tile card-text">
                             {link.title}
