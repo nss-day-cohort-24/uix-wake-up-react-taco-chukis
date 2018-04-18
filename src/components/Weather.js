@@ -92,7 +92,7 @@ class Weather extends Component {
                             <i className="whiteTxt fas fa-location-arrow fa-sm"></i>
                         </button>
                     </div>
-                    <p className="py-1 whiteTxt">{objResult.weather[0].description}</p>
+                    <p className="pt-1 mb-0 whiteTxt">{objResult.weather[0].description}</p>
                     <div>
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                             <ModalHeader toggle={this.toggle}></ModalHeader>

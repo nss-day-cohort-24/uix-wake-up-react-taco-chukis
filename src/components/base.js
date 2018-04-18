@@ -9,10 +9,10 @@ const config = {
 
 
 const app = firebase.initializeApp(config)
-const base = Rebase.createClass(app.database());
 
-        // from brenda's boilerplate react style --
-// export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const user = firebase.auth().currentUser;
 
+export const rebase = Rebase.createClass(app.database());
 
-export default base;
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+
