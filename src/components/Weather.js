@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import loading from '../img/loadinggif.gif';
+import moment from 'moment'
 
 let zipCode = 37216
 
@@ -83,13 +84,14 @@ class Weather extends Component {
         } else {
             return (
                 <div className="card-tile my-3 mx-2 p-3 col-md-6">
-                    <div className="d-flex flex-row align-items-center">
+                    <p className="whiteTxt my-0 py-0">{moment().format('ddd[,] MMM Do')}</p>
+                    <h1 className="display-3 teal py-0 my-0">{Math.round(objResult.main.temp)}&deg;</h1>
+                    <div className="underline-border d-flex flex-row align-items-center my-0 py-0">
                         <p className="my-0 py-0 whiteTxt">{objResult.name}</p>
                         <button onClick={this.toggle}>
                             <i className="whiteTxt fas fa-location-arrow fa-sm"></i>
                         </button>
                     </div>
-                    <h1 className="underline-border display-4 teal py-0 my-0">{Math.round(objResult.main.temp)}&deg;</h1>
                     <p className="py-1 whiteTxt">{objResult.weather[0].description}</p>
                     <div>
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -106,11 +108,6 @@ class Weather extends Component {
                 </div>
             )
         }
-        // const Child = () => (
-        // <div className='modal'>
-           
-        // </div>
-        // )
     }
 }
 
