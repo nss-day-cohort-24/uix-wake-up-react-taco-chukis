@@ -8,7 +8,8 @@ let team = "NSH";
 // let url = `https://api.mysportsfeeds.com/v1.2/pull/nhl/2018-playoff/team_gamelogs.json?team=${team}&&date=since-3-days-ago`;
 let username = 'batkins4';
 let password = 'Cohort24';
-let gamesList;
+let gameResult;
+
 
 // new Headers() required for authenticating API
 
@@ -111,6 +112,12 @@ componentDidMount() {
                 console.log("state",this.state);
                 console.log("THIS IS THE OBJ RESULT",objResult);
                 let games = objResult.teamgamelogs.gamelogs;
+                if(games["0"].stats.Wins["#text"] == "1"){
+                    gameResult = <h1 className="win">W</h1>
+                }
+                else{
+                    gameResult = <h1 className="loss">L</h1>
+                }
                 if(games["0"].game.awayTeam.Abbreviation == team){
 
                     console.log("games",games);    
@@ -118,12 +125,13 @@ componentDidMount() {
                 <div>
                     <div className="whiteTxt">
                     <div className="whiteTxt">
-                    <p className="my-0 py-0">{moment(games["0"].game.date).format('ddd[,] MMM Do')}
-                    <br></br>
-                        {games["0"].game.awayTeam.City}: {games["0"].stats.GoalsAgainst["#text"]}
+                    <p className="my-0 py-0">{moment(games["0"].game.date).format('ddd[,] MMM Do')}</p>
+                    <hr></hr>
+                    <p className="my-0 py-0">{games["0"].game.awayTeam.City}: {games["0"].stats.GoalsAgainst["#text"]}
                         <br></br>
                         {games["0"].game.homeTeam.City}: {games["0"].stats.GoalsFor["#text"]}</p>
                         <hr></hr>
+                        {gameResult}
                         <button onClick={this.toggle}>
                         <i className="fas fa-trophy"></i>
                         </button>
@@ -167,12 +175,13 @@ componentDidMount() {
                     <div>
                         <div className="whiteTxt">
                         <div className="whiteTxt">
-                            <h1>{moment(games["0"].game.date).format('ddd[,] MMM Do')}
-                            <br></br>
-                            {games["0"].game.awayTeam.City}: {games["0"].stats.GoalsAgainst["#text"]}
-                            <br></br>
-                            {games["0"].game.homeTeam.City}: {games["0"].stats.GoalsFor["#text"]}</h1>
+                            <p className="my-0 py-0">{moment(games["0"].game.date).format('ddd[,] MMM Do')}</p>
                             <hr></hr>
+                            <p className="my-0 py-0">{games["0"].game.awayTeam.City}: {games["0"].stats.GoalsAgainst["#text"]}
+                            <br></br>
+                            {games["0"].game.homeTeam.City}: {games["0"].stats.GoalsFor["#text"]}</p>
+                            <hr></hr>
+                            {gameResult}
                             <button onClick={this.toggle}>
                             <i className="fas fa-trophy"></i>
                             </button>
@@ -204,7 +213,7 @@ componentDidMount() {
                                 </select>
                             </ModalBody>
                             <ModalFooter>
-                                <button className="pillbutton" onClick={this.getAnotherClicked.bind(this)}>><p>change team</p></button>
+                                <button className="pillbutton" onClick={this.getAnotherClicked.bind(this)}><p>change team</p></button>
                             </ModalFooter>
                             </Modal>
                         </div>
