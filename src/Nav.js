@@ -5,6 +5,7 @@ import {
     Link,
 } from 'react-router-dom';
 import App from './App.js';
+import logo from './img/fanatic-logo-4.2.png';
 import Location from './components/Location.js';
 
 
@@ -14,7 +15,7 @@ function Nav(props) {
             <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
                 {/* <Link to='/components/Location'>Location</Link> */}
                 <p className="invisible whiteTxt">fanatic</p>                
-                <p className="whiteTxt">fanatic</p>
+                <p className="whiteTxt"><img src={logo} width="180px"/></p>
                 <p className="whiteTxt">logout</p>
             {/* <Route path='/components/Location' conponent={Location} /> */}
             </div>
