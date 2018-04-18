@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Card } from 'reactstrap';
 
 
 class News extends Component {
@@ -64,15 +64,15 @@ class News extends Component {
             } else if(!newsLoaded) {
                 return <div>Loading...</div>
             } else{
-                let newsArticle = objResult.map((link) => (
-                // {console.log("link", link.title, "description: ", link.description)}
-                    <div>
+                let newsArticle = objResult.map((link, index) => (
+                    <div key={index}>
                       <Card className="card-tile card my-3 mx-2">
                             <img className="card-tile-img card-img-top" src={link.urlToImage} alt="Card image cap" />
                           <div className="card-tile-news card-body">
+                          <h5><a href={link.url} alt={link.title} title={link.title}>{link.title}</a></h5>
                             <p className="card-text">
-                            {link.title}
-                            {link.description}
+                            {link.description}<br/>
+                            Source: {link.source.name}
                             </p>
                         
                           </div>
