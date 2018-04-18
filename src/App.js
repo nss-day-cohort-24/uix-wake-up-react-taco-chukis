@@ -6,7 +6,6 @@ import Weather from './components/Weather.js';
 import './App.css';
 import News from './components/News';
 import HockeyMain from './components/HockeyMain';
-
 class App extends Component {
   render() {
     return (
