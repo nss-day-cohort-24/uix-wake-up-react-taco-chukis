@@ -8,22 +8,31 @@ import App from './App.js';
 import logo from './img/fanatic-logo-4.2.png';
 import Location from './components/Location.js';
 import {loginWithGoogle} from './components/auth';
+import { logout } from './components/auth';
+import {user} from './components/base';
 
+class Nav extends Component {
 
-function Nav(props) {
-    return (
-        <div>
-        <Router>
-            <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
-                {/* <Link to='/components/Location'>Location</Link> */}
-                <p className="invisible whiteTxt">fanatic</p>                
-                <p className="whiteTxt"><img src={logo} width="180px"/></p>
-                <a onClick={() => {loginWithGoogle()}}>login</a>
-            {/* <Route path='/components/Location' conponent={Location} /> */}
-            </div>
-        </Router>
-        </div>
-    );
+    
+    render(){
+        if (this.state.uid != null) {
+            return (
+                <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
+                    <a onClick={() => { logout() }}>logout</a>
+                    <p className="whiteTxt"><img src={logo} width="180px" /></p>
+                    <p className="whiteTxt"><i class="fas fa-star fa-lg"></i></p>
+                </div>
+            );
+        } else {
+            return (
+                <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
+                    <a onClick={() => { loginWithGoogle() }}>login</a>
+                    <p className="whiteTxt"><img src={logo} width="180px" /></p>
+                    <p className="whiteTxt"><i class="fas fa-star fa-lg"></i></p>
+                </div>
+            );    
+        }
+    }
 }
 
 
