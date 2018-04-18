@@ -58,13 +58,13 @@ componentWillUnmount() {
             <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
               <a onClick={() => { logout() }}>logout</a>
               <p className="whiteTxt"><img src={logo} width="180px" /></p>
-              <p className="whiteTxt"><i class="fas fa-star fa-lg"></i></p>
+              <p className="whiteTxt"><i className="fas fa-star fa-lg"></i></p>
             </div>
           :
             <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
               <a onClick={() => { loginWithGoogle() }}>login</a>
               <p className="whiteTxt"><img src={logo} width="180px" /></p>
-              <p className="invisible whiteTxt"><i class="fas fa-star fa-lg"></i></p>
+              <p className="invisible whiteTxt"><i className="fas fa-star fa-lg"></i></p>
             </div>
            
           }
