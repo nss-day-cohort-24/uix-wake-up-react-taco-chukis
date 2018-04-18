@@ -23,7 +23,15 @@ Your group will create a Single Page Application that is essentially a dashboard
 # React JS File Components
 
 ## News (mvp)
-1. 
+1. 'class News extends Component'
+ 1. the constructor function creates the state object for the NewsAPI results. 
+ 1. the state object includes a false value for 'newsLoaded', an empty array for the object result and a null error.
+ 1. the componentDidMount function calls the getNews function.
+ 1. getNews() fetched the top headlines of the us in the technology category, then puts the results into a json file through the (res => res.json()) code.
+ 1. Then, result is loaded into the setState object which pulls the json results.
+ ![newsapi fetch function](src/img/api-func-img.PNG "newsapi fetch function")
+ 1. The Fanatic objResult pulls the exact object without any excess info.
+
 1. 
 1.
 
