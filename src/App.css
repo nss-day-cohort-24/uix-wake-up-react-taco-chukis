@@ -27,6 +27,21 @@ p {
   color: #15E6D6;
 }
 
+
+.win{
+  color: #15E6D6;
+  font-size: 60px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.loss{
+  color: red;
+  font-size:60px;
+  text-align:center;
+  font-weight:bold;
+}
+
 .gradient {
   height: 100vw;
   background: rgb(10, 22, 48); /* For browsers that do not support gradients */
