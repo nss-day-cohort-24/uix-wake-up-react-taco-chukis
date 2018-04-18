@@ -29,7 +29,7 @@ Your group will create a Single Page Application that is essentially a dashboard
  - the componentDidMount function calls the getNews function.
  - getNews() fetched the top headlines of the us in the technology category, then puts the results into a json file through the (res => res.json()) code.
  - Then, result is loaded into the setState object which pulls the json results.
- ![newsapi fetch function](src/img/api-func-img.PNG "newsapi fetch function")
+ ![newsapi fetch function](src/img/api-func-img.PNG | width=100 "newsapi fetch function")
  - The Fanatic objResult pulls the exact object without any excess info.
 
 1. 

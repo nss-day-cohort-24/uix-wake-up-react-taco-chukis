@@ -36,7 +36,6 @@ class News extends Component {
                         newsLoaded: true,
                         objResult: result.articles
                     });
-                    console.log("result: ", result.articles);
                 },
                 (error) => {
                     this.setState({
