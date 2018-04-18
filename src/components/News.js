@@ -12,7 +12,6 @@ class News extends Component {
             objResult: [],
             error: null
         }
-        console.log("constructor: ", constructor);
     }
 
     //WILLMOUNT GOES ABOVE THE DIDMOUNT, THIS IS WHERE IT KNOWS WHERE IN FIREBASE TO SAVE PER USER
@@ -29,7 +28,7 @@ class News extends Component {
 
 
         getNews() {
-            fetch("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=e453a2b70d6f424aa4afd355a6919f35")
+            fetch("https://newsapi.org/v2/top-headlines?country=us&category=technology&limit=10&apiKey=e453a2b70d6f424aa4afd355a6919f35")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -37,7 +36,6 @@ class News extends Component {
                         newsLoaded: true,
                         objResult: result.articles
                     });
-                    console.log("result: ", result.articles);
                 },
                 (error) => {
                     this.setState({
@@ -52,8 +50,6 @@ class News extends Component {
         render() {
             const {error, newsLoaded, objResult} = this.state;
             
-    
-
             if(error) {
                 return (
                     <div>

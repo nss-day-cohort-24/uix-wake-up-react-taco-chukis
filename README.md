@@ -1,5 +1,5 @@
 # Fanatic 
-![logo placeholder](https://arizonachristian.edu/wp-content/uploads/2017/06/logo-placeholder.png "Logo placeholder")
+![logo placeholder](src/img/fanatic-logo-5.PNG "Logo placeholder")
 
 Fanatic is a Wake Up App created by the Developers and UX Designers at Cock-A-Doodle-Doo.
 
@@ -23,9 +23,24 @@ Your group will create a Single Page Application that is essentially a dashboard
 # React JS File Components
 
 ## News (mvp)
-1. 
-1. 
-1.
+1. 'class News extends Component'
+    - the constructor function creates the state object for the NewsAPI results. 
+    - the state object includes a false value for 'newsLoaded', an empty array for the object result and a null error.
+    - the componentDidMount function calls the getNews function.
+    - getNews() fetched the top headlines of the us in the technology category, then puts the results into a json file through the (res => res.json()) code.
+    - Then, result is loaded into the setState object which pulls the json results.
+    ![newsapi fetch function](src/img/api-func-img.PNG "newsapi fetch function")
+    - The Fanatic objResult pulls the exact object without any excess info.
+
+1. The render() grabs the state object inside of the constructor and redners the object result (objResult). 
+    ![render the news information](src/img/renderNews.PNG "render function renders object results")
+1. An if else if statement is used to render an Error message (if error), a Loading message (if not loaded), or the newsArticles inside reactstrap Cards. 
+1. newsArticles is a variable set to loop through the results using the .map() function, which adds a permanent and unique ID to every element in the objResult array.
+1. Information rendering include:
+        1. image
+        1. title
+        1. description
+        1. source name
 
 ## Weather (mvp)
 1. 
