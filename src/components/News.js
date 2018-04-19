@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Card } from 'reactstrap';
+import firebase from 'firebase';
+import keyIndex from 'react-key-index';
+
 
 let article;
+let newsImg = "";
 
 class News extends Component {
 
@@ -24,14 +28,15 @@ class News extends Component {
     getAnotherClicked() {
         console.log("GET CLICKED FUNCTION News");
         article = document.getElementById("save-news");
-        var userRef = firebase.database().ref(`/users/${this.props.uid}`);
-        userRef.update({ news: articles });
+        // var userRef = firebase.database().ref(`/users/${this.props.uid}`);
+        // userRef.update({ title: objResult.articles.title,
+        //                  url: objResult.articles.url });
         this.setState({
             newsLoaded: false,
             objResult: [],
             error: null,
+            news: article,
         },
-        
         this.getNews());
            
     }
@@ -47,6 +52,7 @@ class News extends Component {
                         newsLoaded: true,
                         objResult: result.articles
                     });
+                    console.log("news object: ", this.setState.objResult);
                 },
                 (error) => {
                     this.setState({
@@ -65,6 +71,9 @@ class News extends Component {
             let {error, newsLoaded, objResult} = this.state;
 
             let tenArticles = objResult.splice(10);
+            console.log("TEN ARTICLES ", tenArticles);
+            let indexedArticles = keyIndex(objResult, 0);
+            console.log("INDEXED ARTICLES: ", indexedArticles);
 
             if(error) {
                 return (
@@ -76,6 +85,7 @@ class News extends Component {
             } else if(!newsLoaded) {
                 return <div>Loading...</div>
             } else{
+              
                 let newsArticle = objResult.map((link, index) => (
                     <div key={index}>
                       <Card className="card-tile card my-3 mx-2">
@@ -84,14 +94,14 @@ class News extends Component {
                           <h5><a href={link.url} alt={link.title} title={link.title}>{link.title}</a></h5>
                             <p className="card-text">
                             {link.description}<br/>
-                            Source: {link.source.name}<span className="whiteTxt star-right"><i className="fas fa-star fa-lg" id={index} onClick={this.getAnotherClicked.bind(this)}/></span>
+                            Source: {link.source.name}<span className="whiteTxt star-right"><i className="fas fa-star fa-lg" id={link.id} onClick={this.getAnotherClicked.bind(this)}/></span>
                             </p>
                         
                           </div>
                       </Card>
                     </div>
                 ))
-
+                {console.log("what was clicked? ", article)}
                 return (
                     <div>{newsArticle}</div>
                 )

@@ -81,7 +81,7 @@ componentWillUnmount() {
         {/* end hockey */}
         </div>
         {/* end weather/hockey */}
-        <News />
+        <News uid={this.state.uid} />
       </div>
     );
   }
