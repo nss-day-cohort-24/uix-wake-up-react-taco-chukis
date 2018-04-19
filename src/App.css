@@ -72,6 +72,10 @@ p {
   color: white;
 }
 
+.star-right {
+  float: right;
+}
+
 .underline-border {
   border-bottom: 1px solid #15E6D6;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card } from 'reactstrap';
 
+let article;
 
 class News extends Component {
 
@@ -14,17 +15,27 @@ class News extends Component {
         }
     }
 
-    //WILLMOUNT GOES ABOVE THE DIDMOUNT, THIS IS WHERE IT KNOWS WHERE IN FIREBASE TO SAVE PER USER
-    // componentWIllMount() {
-    //     this.ref = rebase.syncState(`FanaticUsers/${this.props.user}/news`, {
-    //         title: this,
-    //         state: 'news'
-    //     });
-    // }
 
-        componentDidMount() {
-            this.getNews();
+    componentDidMount() {
+        this.getNews();
     }
+
+    
+    getAnotherClicked() {
+        console.log("GET CLICKED FUNCTION News");
+        article = document.getElementById("save-news");
+        var userRef = firebase.database().ref(`/users/${this.props.uid}`);
+        userRef.update({ news: articles });
+        this.setState({
+            newsLoaded: false,
+            objResult: [],
+            error: null,
+        },
+        
+        this.getNews());
+           
+    }
+
 
 
         getNews() {
@@ -54,8 +65,6 @@ class News extends Component {
             let {error, newsLoaded, objResult} = this.state;
 
             let tenArticles = objResult.splice(10);
-            
-            {console.log("sliced tenArticles: ", tenArticles)}
 
             if(error) {
                 return (
@@ -75,7 +84,7 @@ class News extends Component {
                           <h5><a href={link.url} alt={link.title} title={link.title}>{link.title}</a></h5>
                             <p className="card-text">
                             {link.description}<br/>
-                            Source: {link.source.name}
+                            Source: {link.source.name}<span className="whiteTxt star-right"><i className="fas fa-star fa-lg" id={index} onClick={this.getAnotherClicked.bind(this)}/></span>
                             </p>
                         
                           </div>
