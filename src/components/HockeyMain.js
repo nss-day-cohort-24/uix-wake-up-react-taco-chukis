@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import moment from 'moment';
+import firebase from 'firebase';
 
 // url for box score API.
 // Still need to add a function to retrieve current date.
@@ -8,6 +9,7 @@ let team = "NSH";
 // let url = `https://api.mysportsfeeds.com/v1.2/pull/nhl/2018-playoff/team_gamelogs.json?team=${team}&&date=since-3-days-ago`;
 let username = 'batkins4';
 let password = 'Cohort24';
+// gameResult is the variabl that holds the L or the W for the team's loss or win
 let gameResult;
 
 
@@ -33,13 +35,13 @@ class HockeyMain extends Component {
 
 
     }
-// calls the main API call function
+
         toggle() {
             this.setState({
                 modal: !this.state.modal
             });
         }        
-
+// calls the main API call function
 componentDidMount() {
             this.getHockeyMain();
     }
@@ -50,11 +52,13 @@ componentDidMount() {
             })
         }
 
-
+// When the button within the modal is clicked, it will go here and reset the state, then run the getHockeyMain function
         getAnotherClicked() {
             console.log("get another");
             team = document.getElementById("teams").value;
             console.log("team", team);
+            var userRef = firebase.database().ref(`/users/${this.props.uid}`);
+        userRef.update({ team: team });
             this.setState({
                hockeyMainLoaded: false,
                 objResult: [],
@@ -70,9 +74,8 @@ componentDidMount() {
 
             headers.append('Authorization', 'Basic ' + btoa(username + ":" + password));
 
-            fetch(`https://api.mysportsfeeds.com/v1.2/pull/nhl/2018-playoff/team_gamelogs.json?team=${team}&&date=since-3-days-ago`, {method:'GET',
+            fetch(`https://api.mysportsfeeds.com/v1.2/pull/nhl/2018-playoff/team_gamelogs.json?team=${team}&&date=since-2-days-ago`, {method:'GET',
             headers: headers,
-            //credentials: 'user:passwd'
            })
             .then(response => response.json())
             .then(
@@ -107,8 +110,7 @@ componentDidMount() {
             
             } else if(!hockeyMainLoaded) {
                 return <div>Loading...</div>
-            } else{
-                // defines variable to retrieve array of different games per day       
+            } else{     
                 console.log("state",this.state);
                 console.log("THIS IS THE OBJ RESULT",objResult);
                 let games = objResult.teamgamelogs.gamelogs;
@@ -125,7 +127,7 @@ componentDidMount() {
                 <div>
                     <div className="whiteTxt">
                     <div className="whiteTxt">
-                    <p className="my-0 py-0">{moment(games["0"].game.date).format('ddd[,] MMM Do')}</p>
+                    <p className="my-0 py-0">Last Game:</p>
                     <hr></hr>
                     <p className="my-0 py-0">{games["0"].game.awayTeam.City}: {games["0"].stats.GoalsAgainst["#text"]}
                         <br></br>
