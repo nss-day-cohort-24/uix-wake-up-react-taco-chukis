@@ -19,8 +19,12 @@ class App extends Component {
     this.state = {
       authed: false,
       loading: true,
-      uid: null,
+      userObj: {
+        zip: 37216,
+        uid: null
+      }
     }
+    this.updateZip = this.updateZip.bind(this);
   }
   
 componentDidMount() {
@@ -30,14 +34,20 @@ componentDidMount() {
           this.setState({
               authed: true,
               loading: false,
-              uid: user.uid
+              userObj: {
+                zip: 37216,
+                uid: user.uid
+              }
           });
           console.log("look here", this.props.state);
       } else{
           this.setState({
               authed: false,
               loading: false,
-              uid: null,
+              userObj: {
+                zip: 37216,
+                uid: null
+              }
           })
       }
   })
@@ -47,6 +57,12 @@ componentWillUnmount() {
   console.log("componentWillUnmount function");
 }
 
+updateZip(zipCode){
+  console.log("zipcode updateZip", zipCode);
+  const userObj = {...this.state.userObj};
+  userObj.zip = zipCode;
+  this.setState({userObj});
+}
 
 
   render() {
@@ -73,7 +89,8 @@ componentWillUnmount() {
         
         <div className="d-flex flex-row justify-content-around">
         {/* weather hockey */}
-            <Weather uid={this.state.uid} />
+            <Weather userObj={this.state.userObj}
+                      updateZip={this.updateZip}/>
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
             <HockeyMain />    

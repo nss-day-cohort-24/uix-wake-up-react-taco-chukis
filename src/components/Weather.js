@@ -5,7 +5,6 @@ import moment from 'moment'
 import firebase from 'firebase'
 
 
-let zipCode = 37216
 
 
 class Weather extends Component {
@@ -21,6 +20,7 @@ class Weather extends Component {
         
         this.toggle = this.toggle.bind(this);
         this.getWeather = this.getWeather.bind(this);
+        this.getUser = this.getUser.bind(this);
     }
     toggle() {
         this.setState({
@@ -29,96 +29,87 @@ class Weather extends Component {
     }
 
     componentDidMount() {
-        console.log("componentDidMount");
-        // this.getUser();
-        this.getWeather();
+        // console.log("componentDidMount");
+        
+        console.log("ZIP", this.props.userObj)
+        // this.getWeather();
     }
 
-    // getUser() {
-    //     var userRef = firebase.database().ref(`/users/${this.props.uid}`);
-    //     userRef.once("value").then(function (snapshot) {
-    //         var user = snapshot.val();
-    //         if (user && user.zip) {
-    //             getWeatherUser();
-    //         } else {
-    //             getWeather();
-    //         }
-    //     }
-    // }
+    getUser() {
+    
+        var userZip = this.props.userObj.zip;
+        this.getWeather(userZip);
+      
+    }
 
     getAnotherClicked = () => {
-        console.log("get another");
-        zipCode = document.getElementById("zip").value;
+        // console.log("get another");
+        let zipCode = parseInt(document.getElementById("zip").value);
         console.log("zipcode", zipCode);
+
+        this.props.updateZip(zipCode);
         
-        var userRef = firebase.database().ref(`/users/${this.props.uid}`);
-        userRef.update({ zip: zipCode });
+    //     var userRef = firebase.database().ref(`/users/${this.props.uid}`);
+    //     userRef.update({ zip: zipCode });
         
-        this.setState({
-            weatherLoaded: false,
-            objResult: {},
-            error: null,
-            zip: zipCode,
-        }, this.setState({
-            modal: !this.state.modal
-        }), this.getWeather());
+    //     this.setState({
+    //         weatherLoaded: false,
+    //         objResult: {},
+    //         error: null,
+    //         zip: zipCode,
+    //     }, 
+    this.setState({         
+    modal: !this.state.modal
+        })
+    // this.getWeather());
+    // }
+    }
+    getWeather(zip) {
+        // console.log("get Weather");
+            fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=1765613948f4837c08e40e5267e00dc0&units=imperial`)
+                .then(res => res.json())
+                .then(
+                (result) => {
+                    console.log("result", result);
+                    this.setState({
+                        weatherLoaded: true,
+                        objResult: result,
+                        // isHidden: true
+                    });
+                },
+                (error) => {
+                    console.log("error");
+                    this.setState({
+                        isLoaded: true,
+                        error: error
+                    });
+                })
     }
 
-
-    getWeather() {
-        
-        // var userRef = firebase.database().ref(`/users/${this.props.uid}`);
-        // userRef.once("value").then(function (snapshot) {
-        //     var user = snapshot.val();
-
-        //     if (user && user.zip) {
-        //         console.log("get Weather");
-        //         fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${user.zip},us&appid=1765613948f4837c08e40e5267e00dc0&units=imperial`)
-        //             .then(res => res.json())
-        //             .then(
-        //             (result) => {
-        //                 console.log("result", result);
-        //                 this.setState({
-        //                     weatherLoaded: true,
-        //                     objResult: result,
-        //                     // isHidden: true
-        //                 });
-        //             },
-        //             (error) => {
-        //                 console.log("error");
-        //                 this.setState({
-        //                     isLoaded: true,
-        //                     error: error
-        //                 });
-        //             })
-                
-        //     } else {
-        //         console.log("this", this);
-                
-                fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=1765613948f4837c08e40e5267e00dc0&units=imperial`)
-                    .then(res => res.json())
-                    .then(
-                    (result) => {
-                        console.log("result", result);
-                        this.setState({
-                            weatherLoaded: true,
-                            objResult: result,
-                            // isHidden: true
-                        });
-                    },
-                    (error) => {
-                        console.log("error");
-                        this.setState({
-                            isLoaded: true,
-                            error: error
-                        });
-                    })
-            }
-    //     }).catch(function(error){
-    //         console.log(error);
-    //     });        
+    // getWeather() {
+    //     fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=1765613948f4837c08e40e5267e00dc0&units=imperial`)
+    //     .then(res => res.json())
+    //     .then(
+    //     (result) => {
+    //         console.log("result", result);
+    //         this.setState({
+    //             weatherLoaded: true,
+    //             objResult: result,
+    //             // isHidden: true
+    //         });
+    //     },
+    //     (error) => {
+    //         console.log("error");
+    //         this.setState({
+    //             isLoaded: true,
+    //             error: error
+    //         });
+    //     })
     // }
+   
+
     render() {
+        this.getUser();
         const { error, weatherLoaded, objResult } = this.state;
 
         if (error) {
