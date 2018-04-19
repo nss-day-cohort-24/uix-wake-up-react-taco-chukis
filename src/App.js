@@ -12,8 +12,9 @@ import { loginWithGoogle } from './components/auth';
 import { logout } from './components/auth';
 import firebase from 'firebase'
 
+const defaultzip = 37216; 
 class App extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -30,7 +31,7 @@ class App extends Component {
   
 componentDidMount() {
   this.authListener = rebase.initializedApp.auth().onAuthStateChanged((user) =>{
-    console.log("userrrr", user);
+    // console.log("USER", user);
       if (user) {
           this.setState({
               authed: true,
@@ -39,8 +40,9 @@ componentDidMount() {
                 zip: user.zip,
                 uid: user.uid
               }
-          });
-          console.log("look here", this.props.state);
+              
+            });
+        console.log("user.userObj", this.state.userObj)
       } else{
           this.setState({
               authed: false,
@@ -105,7 +107,8 @@ updateZip(zipCode){
         <div className="d-flex flex-row justify-content-around">
         {/* weather hockey */}
             <Weather userObj={this.state.userObj}
-                      updateZip={this.updateZip}/>
+              updateZip={this.updateZip} />
+            
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
             <HockeyMain />    

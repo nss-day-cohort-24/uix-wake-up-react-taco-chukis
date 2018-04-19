@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import loading from '../img/loadinggif.gif';
 import moment from 'moment'
 import firebase from 'firebase'
@@ -32,8 +32,9 @@ class Weather extends Component {
         // console.log("componentDidMount");
         
         console.log("ZIP", this.props.userObj)
-        // this.getWeather();
-        this.getUser();        
+
+        this.getWeather(this.props.userObj.zip);
+        // this.getUser();        
     }
 
     getUser() {
