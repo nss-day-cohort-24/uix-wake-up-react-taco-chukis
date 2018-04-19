@@ -32,6 +32,7 @@ class HockeyMain extends Component {
         console.log("constructor: ", constructor);
 
         this.toggle = this.toggle.bind(this);
+        this.getHockeyMain = this.getHockeyMain.bind(this);
 
 
     }
@@ -46,23 +47,20 @@ componentDidMount() {
             this.getHockeyMain();
     }
 
-        showClicked() {
-            this.setState({
-                showResult: false
-            })
-        }
 
 // When the button within the modal is clicked, it will go here and reset the state, then run the getHockeyMain function
         getAnotherClicked() {
             console.log("get another");
             team = document.getElementById("teams").value;
             console.log("team", team);
+            console.log("PROPS",this)
             var userRef = firebase.database().ref(`/users/${this.props.uid}`);
         userRef.update({ team: team });
             this.setState({
                hockeyMainLoaded: false,
                 objResult: [],
                 error: null,
+                team:team
             }, this.setState({
                 modal: !this.state.modal
             }), this.getHockeyMain());
@@ -99,7 +97,7 @@ componentDidMount() {
         
 
         render() {
-            const {error, hockeyMainLoaded, objResult, showResult} = this.state;
+            const {error, hockeyMainLoaded, objResult} = this.state;
 
             if(error) {
                 return (

@@ -53,6 +53,7 @@ class Weather extends Component {
         
         var userRef = firebase.database().ref(`/users/${this.props.uid}`);
         userRef.update({ zip: zipCode });
+        console.log("weatherprops",this);
         
         this.setState({
             weatherLoaded: false,
