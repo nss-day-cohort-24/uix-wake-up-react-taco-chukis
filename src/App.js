@@ -58,13 +58,13 @@ componentWillUnmount() {
             <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
               <a onClick={() => { logout() }}>logout</a>
               <p className="whiteTxt"><img src={logo} width="180px" /></p>
-              <p className="whiteTxt"><i class="fas fa-star fa-lg"></i></p>
+              <p className="whiteTxt"><i className="fas fa-star fa-lg"></i></p>
             </div>
           :
             <div className="px-3 pt-3 darkgray d-flex flex-row justify-content-between align-items-center">
               <a onClick={() => { loginWithGoogle() }}>login</a>
               <p className="whiteTxt"><img src={logo} width="180px" /></p>
-              <p className="invisible whiteTxt"><i class="fas fa-star fa-lg"></i></p>
+              <p className="invisible whiteTxt"><i className="fas fa-star fa-lg"></i></p>
             </div>
            
           }
@@ -73,7 +73,7 @@ componentWillUnmount() {
         
         <div className="d-flex flex-row justify-content-around">
         {/* weather hockey */}
-            <Weather />
+            <Weather uid={this.state.uid} />
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
             <HockeyMain />    

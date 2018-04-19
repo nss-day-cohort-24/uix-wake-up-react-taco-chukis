@@ -43,13 +43,20 @@ class News extends Component {
                         error: error,
                     })
                 })
+
         }
+
+
         
     /*render is grabbing the state object inside of the constructor and rendering the object result (objResult)
     objResult is being set through the api fetch*/
         render() {
-            const {error, newsLoaded, objResult} = this.state;
+            let {error, newsLoaded, objResult} = this.state;
+
+            let tenArticles = objResult.splice(10);
             
+            {console.log("sliced tenArticles: ", tenArticles)}
+
             if(error) {
                 return (
                     <div>
