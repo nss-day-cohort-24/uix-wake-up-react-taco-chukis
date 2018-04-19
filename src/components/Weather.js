@@ -33,11 +33,13 @@ class Weather extends Component {
         
         console.log("ZIP", this.props.userObj)
         // this.getWeather();
+        this.getUser();        
     }
 
     getUser() {
     
         var userZip = this.props.userObj.zip;
+        console.log("userZip", userZip);
         this.getWeather(userZip);
       
     }
@@ -45,7 +47,7 @@ class Weather extends Component {
     getAnotherClicked = () => {
         // console.log("get another");
         let zipCode = parseInt(document.getElementById("zip").value);
-        console.log("zipcode", zipCode);
+        console.log("get another clicked zipcode", zipCode);
 
         this.props.updateZip(zipCode);
         
@@ -61,11 +63,11 @@ class Weather extends Component {
     this.setState({         
     modal: !this.state.modal
         })
-    // this.getWeather());
+    this.getWeather(zipCode);
     // }
     }
     getWeather(zip) {
-        // console.log("get Weather");
+        console.log("get Weather", zip);
             fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=1765613948f4837c08e40e5267e00dc0&units=imperial`)
                 .then(res => res.json())
                 .then(
@@ -85,31 +87,9 @@ class Weather extends Component {
                     });
                 })
     }
-
-    // getWeather() {
-    //     fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=1765613948f4837c08e40e5267e00dc0&units=imperial`)
-    //     .then(res => res.json())
-    //     .then(
-    //     (result) => {
-    //         console.log("result", result);
-    //         this.setState({
-    //             weatherLoaded: true,
-    //             objResult: result,
-    //             // isHidden: true
-    //         });
-    //     },
-    //     (error) => {
-    //         console.log("error");
-    //         this.setState({
-    //             isLoaded: true,
-    //             error: error
-    //         });
-    //     })
-    // }
    
 
     render() {
-        this.getUser();
         const { error, weatherLoaded, objResult } = this.state;
 
         if (error) {

@@ -10,6 +10,7 @@ import {rebase} from './components/base';
 import logo from './img/fanatic-logo-4.2.png';
 import { loginWithGoogle } from './components/auth';
 import { logout } from './components/auth';
+import firebase from 'firebase'
 
 class App extends Component {
   
@@ -35,7 +36,7 @@ componentDidMount() {
               authed: true,
               loading: false,
               userObj: {
-                zip: 37216,
+                zip: user.zip,
                 uid: user.uid
               }
           });
@@ -53,8 +54,13 @@ componentDidMount() {
   })
 }
 
-componentWillUnmount() {
+componentWillMount() {
+
   console.log("componentWillUnmount function");
+  // this.ref = rebase.syncState(`/users/${this.state.userObj.uid}/`, {
+  //     context: this,
+  //     state: 'userObj'
+  // })
 }
 
 updateZip(zipCode){
@@ -62,6 +68,15 @@ updateZip(zipCode){
   const userObj = {...this.state.userObj};
   userObj.zip = zipCode;
   this.setState({userObj});
+  console.log("userobj", {userObj})
+
+  var userRef = firebase.database().ref(`/users/${this.state.userObj.uid}`);
+        userRef.update({ zip: zipCode });
+
+   this.ref = rebase.syncState(`/users/${this.state.userObj.uid}/`, {
+      context: this,
+      state: 'userObj'
+  })
 }
 
 
