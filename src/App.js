@@ -111,7 +111,7 @@ updateZip(zipCode){
             
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
-            <HockeyMain />    
+            <HockeyMain uid={this.state.uid}/>    
           </div>
         {/* end hockey */}
         </div>
