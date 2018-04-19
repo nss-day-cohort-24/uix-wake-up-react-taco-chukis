@@ -73,7 +73,7 @@ componentWillUnmount() {
         
         <div className="d-flex flex-row justify-content-around">
         {/* weather hockey */}
-            <Weather />
+            <Weather uid={this.state.uid} />
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
             <HockeyMain />    
