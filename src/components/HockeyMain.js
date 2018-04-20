@@ -29,7 +29,7 @@ class HockeyMain extends Component {
             error: null,
             modal: false
         }
-        console.log("constructor: ", constructor);
+
 
         this.toggle = this.toggle.bind(this);
         this.getHockeyMain = this.getHockeyMain.bind(this);
@@ -46,14 +46,14 @@ class HockeyMain extends Component {
 componentDidMount() {
             this.getHockeyMain();
     }
+    
 
 
 // When the button within the modal is clicked, it will go here and reset the state, then run the getHockeyMain function
         getAnotherClicked() {
-            console.log("get another");
+
             team = document.getElementById("teams").value;
-            console.log("team", team);
-            console.log("PROPS",this)
+
             var userRef = firebase.database().ref(`/users/${this.props.uid}`);
         userRef.update({ team: team });
             this.setState({
@@ -72,7 +72,7 @@ componentDidMount() {
 
             headers.append('Authorization', 'Basic ' + btoa(username + ":" + password));
 
-            fetch(`https://api.mysportsfeeds.com/v1.2/pull/nhl/2018-playoff/team_gamelogs.json?team=${team}&&date=since-2-days-ago`, {method:'GET',
+            fetch(`https://api.mysportsfeeds.com/v1.2/pull/nhl/2018-playoff/team_gamelogs.json?team=${team}&&date=since-7-days-ago`, {method:'GET',
             headers: headers,
            })
             .then(response => response.json())
@@ -82,7 +82,7 @@ componentDidMount() {
                         hockeyMainLoaded: true,
                         objResult: result
                     });
-                    console.log("result: ", result);
+
                 },
                 (error) => {
                     this.setState({
@@ -109,27 +109,27 @@ componentDidMount() {
             } else if(!hockeyMainLoaded) {
                 return <div>Loading...</div>
             } else{     
-                console.log("state",this.state);
-                console.log("THIS IS THE OBJ RESULT",objResult);
+                
                 let games = objResult.teamgamelogs.gamelogs;
-                if(games["0"].stats.Wins["#text"] == "1"){
+                let z= games.length-1;
+                if(games[`${z}`].stats.Wins["#text"] == "1"){
                     gameResult = <h1 className="win">W</h1>
                 }
                 else{
                     gameResult = <h1 className="loss">L</h1>
                 }
-                if(games["0"].game.awayTeam.Abbreviation == team){
+                if(games[`${z}`].game.awayTeam.Abbreviation == team){
 
-                    console.log("games",games);    
+
                 return (
                 <div>
                     <div className="whiteTxt">
                     <div className="whiteTxt">
                     <p className="my-0 py-0">Last Game:</p>
                     <hr></hr>
-                    <p className="my-0 py-0">{games["0"].game.awayTeam.City}: {games["0"].stats.GoalsAgainst["#text"]}
+                    <p className="my-0 py-0">{games[`${z}`].game.awayTeam.City}: {games[`${z}`].stats.GoalsFor["#text"]}
                         <br></br>
-                        {games["0"].game.homeTeam.City}: {games["0"].stats.GoalsFor["#text"]}</p>
+                        {games[`${z}`].game.homeTeam.City}: {games[`${z}`].stats.GoalsAgainst["#text"]}</p>
                         <hr></hr>
                         {gameResult}
                         <button onClick={this.toggle}>
@@ -170,16 +170,16 @@ componentDidMount() {
                     
                 )
             }else{
-                console.log("games",games);    
+
                 return (
                     <div>
                         <div className="whiteTxt">
                         <div className="whiteTxt">
-                            <p className="my-0 py-0">{moment(games["0"].game.date).format('ddd[,] MMM Do')}</p>
+                            <p className="my-0 py-0">{moment(games[`${z}`].game.date).format('ddd[,] MMM Do')}</p>
                             <hr></hr>
-                            <p className="my-0 py-0">{games["0"].game.awayTeam.City}: {games["0"].stats.GoalsAgainst["#text"]}
+                            <p className="my-0 py-0">{games[`${z}`].game.awayTeam.City}: {games[`${z}`].stats.GoalsAgainst["#text"]}
                             <br></br>
-                            {games["0"].game.homeTeam.City}: {games["0"].stats.GoalsFor["#text"]}</p>
+                            {games[`${z}`].game.homeTeam.City}: {games[`${z}`].stats.GoalsFor["#text"]}</p>
                             <hr></hr>
                             {gameResult}
                             <button onClick={this.toggle}>

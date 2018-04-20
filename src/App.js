@@ -10,43 +10,76 @@ import {rebase} from './components/base';
 import logo from './img/fanatic-logo-4.2.png';
 import { loginWithGoogle } from './components/auth';
 import { logout } from './components/auth';
+import firebase from 'firebase'
 
+const defaultzip = 37216; 
 class App extends Component {
-  
+
   constructor(props) {
     super(props);
 
     this.state = {
       authed: false,
       loading: true,
-      uid: null,
+      userObj: {
+        zip: 37216,
+        uid: null
+      }
     }
+    this.updateZip = this.updateZip.bind(this);
   }
   
 componentDidMount() {
   this.authListener = rebase.initializedApp.auth().onAuthStateChanged((user) =>{
-    console.log("userrrr", user);
+    // console.log("USER", user);
       if (user) {
           this.setState({
               authed: true,
               loading: false,
-              uid: user.uid
-          });
-          console.log("look here", this.props.state);
+              userObj: {
+                zip: user.zip,
+                uid: user.uid
+              }
+              
+            });
+        console.log("user.userObj", this.state.userObj)
       } else{
           this.setState({
               authed: false,
               loading: false,
-              uid: null,
+              userObj: {
+                zip: 37216,
+                uid: null
+              }
           })
       }
   })
 }
 
-componentWillUnmount() {
+componentWillMount() {
+
   console.log("componentWillUnmount function");
+  // this.ref = rebase.syncState(`/users/${this.state.userObj.uid}/`, {
+  //     context: this,
+  //     state: 'userObj'
+  // })
 }
 
+updateZip(zipCode){
+  console.log("zipcode updateZip", zipCode);
+  const userObj = {...this.state.userObj};
+  userObj.zip = zipCode;
+  this.setState({userObj});
+  console.log("userobj", {userObj})
+
+  var userRef = firebase.database().ref(`/users/${this.state.userObj.uid}`);
+        userRef.update({ zip: zipCode });
+
+   this.ref = rebase.syncState(`/users/${this.state.userObj.uid}/`, {
+      context: this,
+      state: 'userObj'
+  })
+}
 
 
   render() {
@@ -73,7 +106,9 @@ componentWillUnmount() {
         
         <div className="d-flex flex-row justify-content-around">
         {/* weather hockey */}
-            <Weather uid={this.state.uid} />
+            <Weather userObj={this.state.userObj}
+              updateZip={this.updateZip} />
+            
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
             <HockeyMain uid={this.state.uid}/>    
@@ -81,7 +116,7 @@ componentWillUnmount() {
         {/* end hockey */}
         </div>
         {/* end weather/hockey */}
-        <News />
+        <News uid={this.state.uid} />
       </div>
     );
   }
