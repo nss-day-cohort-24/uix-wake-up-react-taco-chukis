@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Card } from 'reactstrap';
+import firebase from 'firebase';
+import keyIndex from 'react-key-index';
+import {rebase} from './base';
 
+
+
+let articles = "";
+let newsImg = "";
 
 class News extends Component {
 
@@ -10,20 +17,35 @@ class News extends Component {
         this.state = {
             newsLoaded: false,
             objResult: [],
-            error: null
+            error: null,
+            news: {}
         }
+        this.getAnotherClicked=this.getAnotherClicked.bind(this);
     }
 
-    //WILLMOUNT GOES ABOVE THE DIDMOUNT, THIS IS WHERE IT KNOWS WHERE IN FIREBASE TO SAVE PER USER
-    // componentWIllMount() {
-    //     this.ref = rebase.syncState(`FanaticUsers/${this.props.user}/news`, {
-    //         title: this,
-    //         state: 'news'
-    //     });
-    // }
 
-        componentDidMount() {
-            this.getNews();
+    componentDidMount() {
+        console.log("did mount")
+        this.getNews();
+    }
+
+    
+    getAnotherClicked(e) {
+        // console.log("GET CLICKED FUNCTION News", e.target.id);
+        // articles = document.getElementById("save-news");
+        let savedArticle =  this.state.objResult[e.target.id];
+        var userRef = firebase.database().ref(`/news`);
+        userRef.push({ title: savedArticle.title,
+                         author: savedArticle.author,
+                         description: savedArticle.description,
+                         url: savedArticle.url,
+                         uid: this.props.uid    });
+        this.setState({
+            newsLoaded: false,
+            objResult: [],
+            error: null,
+        },
+        this.getNews());
     }
 
 
@@ -36,6 +58,7 @@ class News extends Component {
                         newsLoaded: true,
                         objResult: result.articles
                     });
+                    // console.log("news object: ", this.setState.objResult);
                 },
                 (error) => {
                     this.setState({
@@ -54,8 +77,10 @@ class News extends Component {
             let {error, newsLoaded, objResult} = this.state;
 
             let tenArticles = objResult.splice(10);
-            
-            {console.log("sliced tenArticles: ", tenArticles)}
+            console.log("TEN ARTICLES ", tenArticles);
+
+            // let indexedArticles = keyIndex(objResult, 0);
+            // console.log("INDEXED ARTICLES: ", indexedArticles);
 
             if(error) {
                 return (
@@ -67,6 +92,7 @@ class News extends Component {
             } else if(!newsLoaded) {
                 return <div>Loading...</div>
             } else{
+              
                 let newsArticle = objResult.map((link, index) => (
                     <div key={index}>
                       <Card className="card-tile card my-3 mx-2">
@@ -75,14 +101,13 @@ class News extends Component {
                           <h5><a href={link.url} alt={link.title} title={link.title}>{link.title}</a></h5>
                             <p className="card-text">
                             {link.description}<br/>
-                            Source: {link.source.name}
+                            Source: {link.source.name}<span className="whiteTxt star-right"><i className="fas fa-star fa-lg" id={index} onClick={this.getAnotherClicked}/></span>
                             </p>
                         
                           </div>
                       </Card>
                     </div>
                 ))
-
                 return (
                     <div>{newsArticle}</div>
                 )
