@@ -27,7 +27,40 @@ class App extends Component {
       }
     }
     this.updateZip = this.updateZip.bind(this);
+    this.syncing = this.syncing.bind(this); 
+    this.getUserData = this.getUserData.bind(this);    
+       
   }
+
+  getUserData(user) {
+   let userData;
+   let userZip;
+
+    var ref = firebase.database().ref("users");
+    ref.once("value").then(function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var userFBKey = childSnapshot.key;
+        if (user.uid === userFBKey) {
+          // key = userFBKey;
+          userData = childSnapshot.val();
+          userZip = userData.zip;
+        }
+      });
+      console.log("Get user data zip", userZip)
+
+    });
+  }
+
+  syncing() {
+    console.log("I AM SYNCING", this.state.userObj.uid)
+
+    this.zipRef = rebase.syncState(`/users/${this.state.userObj.uid}`, {
+          context: this,
+          state: 'users',
+          asArray: false,
+      });
+    }  
+
   
 componentDidMount() {
   this.authListener = rebase.initializedApp.auth().onAuthStateChanged((user) =>{
@@ -37,12 +70,15 @@ componentDidMount() {
               authed: true,
               loading: false,
               userObj: {
-                zip: user.zip,
+                zip: 12345,
                 uid: user.uid
               }
               
             });
         console.log("user.userObj", this.state.userObj)
+        this.syncing();   
+        // this is working but I can't get into the Weather component with the grabbed fb zipcode
+        this.getUserData(this.state.userObj);     
       } else{
           this.setState({
               authed: false,
