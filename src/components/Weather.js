@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import loading from '../img/loadinggif.gif';
 import moment from 'moment'
 import firebase from 'firebase'
+// import { rebase } from './base';
 
 
 
@@ -22,16 +23,19 @@ class Weather extends Component {
         this.getWeather = this.getWeather.bind(this);
         this.getUser = this.getUser.bind(this);
     }
+
     toggle() {
         this.setState({
             modal: !this.state.modal
         });
     }
 
+    
+
     componentDidMount() {
         // console.log("componentDidMount");
         
-        console.log("ZIP", this.props.userObj)
+        // console.log("ZIP", this.props.userObj)
 
         this.getWeather(this.props.userObj.zip);
         // this.getUser();        
@@ -40,7 +44,7 @@ class Weather extends Component {
     getUser() {
     
         var userZip = this.props.userObj.zip;
-        console.log("userZip", userZip);
+        // console.log("userZip", userZip);
         this.getWeather(userZip);
       
     }
@@ -48,7 +52,7 @@ class Weather extends Component {
     getAnotherClicked = () => {
         // console.log("get another");
         let zipCode = parseInt(document.getElementById("zip").value);
-        console.log("get another clicked zipcode", zipCode);
+        // console.log("get another clicked zipcode", zipCode);
 
         this.props.updateZip(zipCode);
         
@@ -73,7 +77,7 @@ class Weather extends Component {
                 .then(res => res.json())
                 .then(
                 (result) => {
-                    console.log("result", result);
+                    // console.log("result", result);
                     this.setState({
                         weatherLoaded: true,
                         objResult: result,
