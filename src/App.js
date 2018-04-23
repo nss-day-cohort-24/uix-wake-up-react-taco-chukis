@@ -27,6 +27,7 @@ class App extends Component {
       }
     }
     this.updateZip = this.updateZip.bind(this);
+    this.updateTeam = this.updateTeam.bind(this);
     this.syncing = this.syncing.bind(this); 
     this.getUserData = this.getUserData.bind(this);    
        
@@ -70,8 +71,8 @@ componentDidMount() {
               authed: true,
               loading: false,
               userObj: {
-                zip: 12345,
-                uid: user.uid
+                zip: user.zip,
+                uid: user.uid,
               }
               
             });
@@ -117,6 +118,22 @@ updateZip(zipCode){
   })
 }
 
+updateTeam(team){
+  console.log("updateTeam", team);
+  const userObj = {...this.state.userObj};
+  userObj.team = team;
+  this.setState({userObj});
+  console.log("userobj", {userObj})
+
+  var userRef = firebase.database().ref(`/users/${this.state.userObj.uid}`);
+        userRef.update({ team: team });
+
+   this.ref = rebase.syncState(`/users/${this.state.userObj.uid}/`, {
+      context: this,
+      state: 'userObj'
+  })
+}
+
 
   render() {
     return (
@@ -147,7 +164,8 @@ updateZip(zipCode){
             
         {/* hockey */}
           <div className="card-tile my-3 mx-2 p-3 col-md-6">    
-            <HockeyMain uid={this.state.uid}/>    
+            <HockeyMain uid={this.state.userObj}
+            updateTeam={this.updateTeam}/>    
           </div>
         {/* end hockey */}
         </div>
