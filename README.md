@@ -20,6 +20,16 @@ Your group will create a Single Page Application that is essentially a dashboard
 1. Future planning for other APIs to be included.
 1. Add in the Spotify API to allow the user to play a song from their current / favorite playlist.
 
+
+# How to view this app
+1. This app is compiled with React JS. In order to view this application, you must 'npm install' in the folder where the package.json file is compiling other files. 
+1. Once you have installed dependencies, you must 'npm start'.
+1. Log in with Google on the top left corner of Fanatic.
+1. The User may now update their zipcode for weather, their favorite NHL team for sports headlines, and see top 10 trending technology stories in the US.
+1. To save a favorite article, click on the star on the bottom right corner or any article card.
+1. You may log out at the top left corner of the application.
+
+
 # React JS File Components
 
 ## News (mvp)
@@ -48,11 +58,6 @@ Your group will create a Single Page Application that is essentially a dashboard
 1. 
 
 ## Sports (mvp)
-1. 
-1. 
-1. 
-
-## Music (stretch goal)
 1. 
 1. 
 1. 
