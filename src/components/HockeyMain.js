@@ -122,8 +122,6 @@ componentDidMount() {
                     gameResult = <h1 className="loss">L</h1>
                 }
                 if(games[`${z}`].game.awayTeam.Abbreviation == team){
-
-
                 return (
                 <div>
                     <div className="whiteTxt">
