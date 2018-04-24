@@ -35,6 +35,7 @@ class App extends Component {
   getUserData(user) {
    let userData;
    let userZip;
+   console.log("GET USER DATA USER", user);
 
     var ref = firebase.database().ref("users");
     ref.once("value").then(function (snapshot) {
@@ -46,13 +47,13 @@ class App extends Component {
           userZip = userData.zip;
         }
       });
-      console.log("Get user data zip", userZip)
+      // console.log("Get user data zip", userZip)
 
     });
   }
 
   syncing() {
-    console.log("I AM SYNCING", this.state.userObj.uid)
+    // console.log("I AM SYNCING", this.state.userObj.uid)
 
     this.zipRef = rebase.syncState(`/users/${this.state.userObj.uid}`, {
           context: this,
@@ -173,7 +174,7 @@ updateNews(news){
         {/* end hockey */}
         </div>
         {/* end weather/hockey */}
-        <News uid={this.state.uid} />
+        <News uid={this.state.userObj} />
       </div>
     );
   }
