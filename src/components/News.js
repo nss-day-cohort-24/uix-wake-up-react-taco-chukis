@@ -3,8 +3,9 @@ import { Card } from 'reactstrap';
 import firebase from 'firebase';
 import keyIndex from 'react-key-index';
 import {rebase} from './base';
+import {auth} from './auth';
 
-
+console.log("DATA USER", auth.data);
 
 let articles = "";
 let newsImg = "";
@@ -34,12 +35,14 @@ class News extends Component {
         // console.log("GET CLICKED FUNCTION News", e.target.id);
         // articles = document.getElementById("save-news");
         let savedArticle =  this.state.objResult[e.target.id];
+
+        console.log("this.state.uid", this.state);
+
         var userRef = firebase.database().ref(`/news`);
         userRef.push({ title: savedArticle.title,
                          author: savedArticle.author,
                          description: savedArticle.description,
-                         url: savedArticle.url,
-                         uid: this.props.uid    });
+                         url: savedArticle.url    });
         this.setState({
             newsLoaded: false,
             objResult: [],
