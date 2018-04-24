@@ -54,7 +54,7 @@ Your group will create a Single Page Application that is essentially a dashboard
     1. source name
 
 ## Weather (mvp)
-1. Start with Nashville Weather (37216)
+1. Start with Nashville Weather (37216)-----
 ![weather](src/img/weather.PNG "weather")
 1. Card displays 
     - Current Date
