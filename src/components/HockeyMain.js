@@ -126,25 +126,28 @@ componentDidMount() {
 
                 return (
                 <div>
-                    <div className="whiteTxt">
-                    <div className="whiteTxt">
-                    <p className="my-0 py-0">Last Game:</p>
-                    <hr></hr>
-                    <div className="d-flex flex-row">
-                        {gameResult}
-                        <div>
-                            <p className="my-0 py-0">{games[`${z}`].game.awayTeam.City}: {games[`${z}`].stats.GoalsFor["#text"]}
-                            <br></br>
-                            {games[`${z}`].game.homeTeam.City}: {games[`${z}`].stats.GoalsAgainst["#text"]}</p>
-                            <hr></hr>
+                        <div className="whiteTxt">
+                            <div className="whiteTxt">
+                                <p className="pb-1 mb-0 underline-border">Last game:<br />{moment(games[`${z}`].game.date).format('dddd[,] MMM Do')}</p>
+                                <div className="underline-border mb-1 d-flex flex-row justify-content-center">
+                                    <div className="mr-3 mb-0 pb-0 align-self-center">
+                                        {gameResult}
+                                    </div>
+                                    <div className="align-self-center">
+                                        {/* <hr></hr> */}
+                                        <p className="my-0 py-0">{games[`${z}`].game.awayTeam.City}: {games[`${z}`].stats.GoalsAgainst["#text"]}</p>
+                                        {/* <br></br> */}
+                                        <p className="my-0 py-0">{games[`${z}`].game.homeTeam.City}: {games[`${z}`].stats.GoalsFor["#text"]}</p>
+                                        {/* <hr></hr> */}
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-end">
+                                    <button className="" onClick={this.toggle}>
+                                        <i className="whiteTxt fas fa-trophy"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                        <button onClick={this.toggle}>
-                        <i className="fas fa-trophy"></i>
-                        </button>
-                    </div>
-
-                </div>
                     <div>
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Choose Your Favorite Team</ModalHeader>
