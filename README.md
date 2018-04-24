@@ -58,7 +58,8 @@ Your group will create a Single Page Application that is essentially a dashboard
 1. 
 
 ## Sports (mvp)
-1. 
-1. 
-1. 
+1. componentDidMount calls the function (getHockeyMain), which fetches from my API. 
+1. It changes the state if it is loaded effectively and an if statement determines if the team won or lost, as well as if they are the home or away team.
+1. That same function formats the jsx version of the score and a W or L depending on if they won or not
+1. Fanatic is set up to start with Nashville as their favorite team, but if the button is clicked, the getAnotherClicked() runs the "updateTeam(team) function which retrieves the team value to plug into the API url, as well as pushing the favorite team to firebase.
 
