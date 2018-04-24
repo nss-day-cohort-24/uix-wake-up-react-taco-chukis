@@ -53,9 +53,15 @@ Your group will create a Single Page Application that is essentially a dashboard
     1. source name
 
 ## Weather (mvp)
-1. 
-1. 
-1. 
+1. Start with Nashville Weather (37216)
+1. Card displays 
+    - Current Date
+    - Current Temp
+    - Location
+    - Change Location Button
+    - Weather Condition
+1. Let user save their prefered zipcode in modal popup from locaiton button. Shows on app and syncs to Firebase.
+1. When the user returns their prefered zipcode will be saved to their login.
 
 ## Sports (mvp)
 1. componentDidMount calls the function (getHockeyMain), which fetches from my API. 
