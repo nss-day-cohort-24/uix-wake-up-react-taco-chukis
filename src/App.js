@@ -3,7 +3,6 @@ import holderImg from './img/museum.jpg';
 import './App.css';
 import Nav from './Nav.js';
 import Weather from './components/Weather.js';
-import './App.css';
 import News from './components/News';
 import HockeyMain from './components/HockeyMain';
 import {rebase} from './components/base';
@@ -132,6 +131,10 @@ updateTeam(team){
       context: this,
       state: 'userObj'
   })
+}
+
+updateNews(news){
+  console.log("updateNews", news);
 }
 
 
