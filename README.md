@@ -43,6 +43,7 @@ Your group will create a Single Page Application that is essentially a dashboard
     - The Fanatic objResult pulls the exact object without any excess info.
 
 1. The render() grabs the state object inside of the constructor and redners the object result (objResult). 
+
     ![render the news information](src/img/renderNews.PNG "render function renders object results")
 1. An if else if statement is used to render an Error message (if error), a Loading message (if not loaded), or the newsArticles inside reactstrap Cards. 
 1. newsArticles is a variable set to loop through the results using the .map() function, which adds a permanent and unique ID to every element in the objResult array.
